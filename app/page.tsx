@@ -7,7 +7,7 @@ export default function Home() {
     <main className="mx-auto w-full max-w-240">
       <header className="mb-2 flex flex-wrap items-center justify-between gap-x-6 gap-y-4">
         <h1 className="text-2xl font-semibold tracking-tight">
-          GitHub Trending
+          GitHub Trends
         </h1>
         <ThemeControl />
       </header>

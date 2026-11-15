@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "GitHub Trending — Skills · MCP · Memory",
+  title: "GitHub Trends — Skills · MCP · Memory · Tooling",
   description:
     "A personal dashboard of trending GitHub repositories for agent skills, MCP servers and memory tools.",
 }

@@ -6,7 +6,7 @@ import { dirname, join } from 'node:path';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const DATA = join(ROOT, 'data');
-const UA = 'github-trending-dashboard';
+const UA = 'github-trends';
 const CAP = 30;
 const FRESH = 8;
 
