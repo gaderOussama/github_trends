@@ -3,6 +3,7 @@ import { Dashboard } from "../components/dashboard"
 import { NorthStar } from "../components/north-star"
 import { ThemeControl } from "../components/theme-control"
 
+const PORTFOLIO_URL = "https://www.oussamagader.tech/"
 const LINKEDIN_URL = "https://www.linkedin.com/in/oussama-gader-46763230b/"
 const SOURCE_URL = "https://github.com/gaderOussama/github_trends"
 
@@ -32,9 +33,11 @@ export default function Home() {
           <NorthStar className="size-3.5 shrink-0" />
           <span>
             Built by{" "}
-            <External href={LINKEDIN_URL}>
-              <strong className="font-semibold">Oussama Gader</strong> · LinkedIn
+            <External href={PORTFOLIO_URL}>
+              <strong className="font-semibold">Oussama Gader</strong>
             </External>
+            {" · "}
+            <External href={LINKEDIN_URL}>LinkedIn</External>
           </span>
         </p>
         <External href={SOURCE_URL}>Source on GitHub</External>
