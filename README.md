@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GitHub Trends
 
-## Getting Started
+A daily list of rising GitHub repos that make AI agents better: **Claude skills**, **MCP servers**, **memory & context** tools and **agent tooling** (token savers, gateways, code intelligence).
 
-First, run the development server:
+- Four tabs: Skills, MCP, Memory & Context, Agent tooling
+- Star totals, stars gained today or this week, and a **NEW** mark for repos not seen before
+- Copy-ready `npx skills add owner/repo` commands for skills
+- Search, a "New only" filter, and system / light / dark themes
+- Data refreshes every day through a GitHub Action
+
+Built with Next.js, React 19 and [ui-sdk](https://ui-sdk.dev).
+
+## Run it locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run fetch   # collect fresh repos into data/repos.json (~2.5 min)
+npm run dev     # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`npm run fetch` uses `GITHUB_TOKEN` if set, otherwise your `gh auth token`, otherwise unauthenticated (slower).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## How the data works
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+`scripts/fetch.mjs` has no dependencies. It:
 
-## Learn More
+1. Searches the GitHub API by topics and keywords for each category (recently pushed and recently created repos).
+2. Reads github.com/trending (daily and weekly) and keeps matching repos.
+3. Always includes the repos on the `WATCHLIST` at the top of the script.
+4. Filters noise, caps each category at 30, and writes `data/repos.json`.
+5. Keeps `data/seen.json` (for the NEW mark) and `data/history.json` (daily star snapshots used for weekly gains).
 
-To learn more about Next.js, take a look at the following resources:
+To follow your own niche, edit `QUERIES`, `KEYWORDS` and `WATCHLIST` at the top of the script.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Automation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `.github/workflows/ci.yml` runs lint, tests and the build on every push and pull request.
+- `.github/workflows/fetch.yml` runs the fetch every day at 06:00 UTC (or on demand) and commits the new data.
 
-## Deploy on Vercel
+## Scripts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Command | What it does |
+|---|---|
+| `npm run dev` | Start the dev server |
+| `npm run fetch` | Refresh the data |
+| `npm test` | Run the tests |
+| `npm run lint` | Lint |
+| `npm run build` | Production build |
