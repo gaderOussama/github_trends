@@ -1,8 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   cacheComponents: true,
+  // data/repos.json is read with fs at request time, so ship it with the server bundle.
+  outputFileTracingIncludes: { "/": ["./data/repos.json"] },
   partialPrefetching: true,
   turbopack: {
     rules: {
