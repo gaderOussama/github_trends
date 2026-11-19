@@ -230,5 +230,10 @@
   "mem0ai/mem0",
   "inevolin/claude-code-usage-analysis",
   "img2threejs/img2threejs",
-  "zxfccmm4/magpie-remote"
+  "zxfccmm4/magpie-remote",
+  "aoci-spec/aoci-code",
+  "punkpeye/awesome-mcp-servers",
+  "SonicloudTech/mouse-mcp",
+  "agentic-os-org/ANOLISA",
+  "afurmanov/harness-profiler"
 ]
