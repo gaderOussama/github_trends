@@ -40,7 +40,7 @@ Every morning a GitHub Action runs one dependency-free script, commits the new d
 
 ```mermaid
 flowchart LR
-    A[GitHub Action<br/>05:17 UTC daily] --> B[scripts/fetch.mjs]
+    A[GitHub Action<br/>every 6 hours] --> B[scripts/fetch.mjs]
     B --> C[GitHub search API<br/>25 topic and keyword queries]
     B --> D[github.com/trending<br/>daily and weekly]
     B --> E[Watchlist<br/>always included]
@@ -157,7 +157,7 @@ To add a whole new tab, add a key to `QUERIES` and `KEYWORDS`, then add it to `C
 
 ```mermaid
 sequenceDiagram
-    participant Cron as GitHub Action (05:17 UTC)
+    participant Cron as GitHub Action (every 6 h)
     participant Script as fetch.mjs
     participant GH as GitHub
     participant Repo as This repo
@@ -170,7 +170,7 @@ sequenceDiagram
 
 | Workflow | When | What |
 |---|---|---|
-| [`fetch.yml`](.github/workflows/fetch.yml) | Daily at 05:17 UTC, or by hand from the Actions tab | Runs the fetch with the built-in `GITHUB_TOKEN` and commits the new data. No secrets to set up. |
+| [`fetch.yml`](.github/workflows/fetch.yml) | Every 6 hours (GitHub may start scheduled runs late), or by hand from the Actions tab | Runs the fetch with the built-in `GITHUB_TOKEN` and commits the new data. No secrets to set up. |
 | [`ci.yml`](.github/workflows/ci.yml) | Every push and pull request | Lint, tests and build |
 
 ## Project structure

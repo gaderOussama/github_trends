@@ -2,7 +2,7 @@ name: Fetch trends
 
 on:
   schedule:
-    - cron: "17 5 * * *"
+    - cron: "17 */6 * * *"  # every 6 h; GitHub often starts scheduled runs hours late
   workflow_dispatch:
 
 permissions:
